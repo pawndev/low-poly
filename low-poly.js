@@ -84,8 +84,11 @@ fileInput.addEventListener("change", lowPoly.importImage.bind(lowPoly));
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_CanvasUtil__ = __webpack_require__(2);
+
+
 class LowPoly {
-    constructor(canvasElement, lowpolifyCanvas) {
+    constructor(canvasElement, lowpolifyCanvas, config) {
         this._canvas = canvasElement;
         this._lowpolifyCanvas = lowpolifyCanvas;
         this._context = canvasElement.getContext('2d');
@@ -107,15 +110,24 @@ class LowPoly {
 
         this._context.drawImage(this.originalImg, 0, 0);
         this.pixelsOriginal = this._context.getImageData(0, 0, this.originalImg.width, this.originalImg.height);
+        this.pixelsCopy = __WEBPACK_IMPORTED_MODULE_0__utils_CanvasUtil__["a" /* default */].copyImageData(this._context, this.pixelsOriginal);
 
-        for (var i = 0; i < this.pixelsOriginal.data.length; i += 4) {
-            this.pixelsOriginal.data[i] = 255 - this.pixelsOriginal.data[i];
-            this.pixelsOriginal.data[i + 1] = 255 - this.pixelsOriginal.data[i + 1];
-            this.pixelsOriginal.data[i + 2] = 255 - this.pixelsOriginal.data[i + 2];
-            this.pixelsOriginal.data[i + 3] = 255;
+        // for (let i = 0; i < this.pixelsCopy.data.length; i += 4) {
+        //     this.pixelsCopy.data[i] = 255 - this.pixelsCopy.data[i];
+        //     this.pixelsCopy.data[i+1] = 255 - this.pixelsCopy.data[i+1];
+        //     this.pixelsCopy.data[i+2] = 255 - this.pixelsCopy.data[i+2];
+        //     this.pixelsCopy.data[i+3] = 255;
+        // }
+
+        for (let i = 0; i < this.pixelsCopy.data.length; i += 4) {
+            let grayscale = this.getGreyScale(this.pixelsCopy.data[i], this.pixelsCopy.data[i + 1], this.pixelsCopy.data[i + 2]);
+            this.pixelsCopy.data[i] = grayscale;
+            this.pixelsCopy.data[i + 1] = grayscale;
+            this.pixelsCopy.data[i + 2] = grayscale;
+            this.pixelsCopy.data[i + 3] = 255;
         }
 
-        this._lowpolifyContext.putImageData(this.pixelsOriginal, 0, 0);
+        this._lowpolifyContext.putImageData(this.pixelsCopy, 0, 0);
     }
 
     importImage(evt) {
@@ -123,8 +135,27 @@ class LowPoly {
         this._reader.onload = this.readerLoad.bind(this);
         this._reader.readAsDataURL(evt.target.files[0]);
     }
+
+    getGreyScale(red, green, blue) {
+        return 0.21 * red + 0.72 * green + 0.07 * blue;
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = LowPoly;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class CanvasUtil {
+    static copyImageData(ctx, src) {
+        let dst = ctx.createImageData(src.width, src.height);
+        dst.data.set(src.data);
+        return dst;
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CanvasUtil;
 
 
 /***/ })
