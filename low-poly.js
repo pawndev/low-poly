@@ -107,12 +107,14 @@ class LowPoly {
 
         this._context.drawImage(this.originalImg, 0, 0);
         this.pixelsOriginal = this._context.getImageData(0, 0, this.originalImg.width, this.originalImg.height);
+
         for (var i = 0; i < this.pixelsOriginal.data.length; i += 4) {
             this.pixelsOriginal.data[i] = 255 - this.pixelsOriginal.data[i];
             this.pixelsOriginal.data[i + 1] = 255 - this.pixelsOriginal.data[i + 1];
             this.pixelsOriginal.data[i + 2] = 255 - this.pixelsOriginal.data[i + 2];
             this.pixelsOriginal.data[i + 3] = 255;
         }
+
         this._lowpolifyContext.putImageData(this.pixelsOriginal, 0, 0);
     }
 
