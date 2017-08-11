@@ -71,10 +71,14 @@
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LowPoly__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DOM__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Application__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Application___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Application__);
+
 
 
 
 let DOMObject = new __WEBPACK_IMPORTED_MODULE_1__DOM__["a" /* default */]().initialize();
+let App = new __WEBPACK_IMPORTED_MODULE_2__Application__["default"](DOMObject);
 let lowPoly = new __WEBPACK_IMPORTED_MODULE_0__LowPoly__["a" /* default */](DOMObject.get('origin'), DOMObject.get('render'));
 
 DOMObject.get('import').addEventListener("change", lowPoly.importImage.bind(lowPoly));
@@ -178,6 +182,12 @@ class DOM extends Map {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = DOM;
 
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: SyntaxError: Unexpected token, expected { (6:16)\n\n\u001b[0m \u001b[90m 4 | \u001b[39m    }\n \u001b[90m 5 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 6 | \u001b[39m    initialize()\u001b[33m;\u001b[39m\n \u001b[90m   | \u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 7 | \u001b[39m}\u001b[0m\n");
 
 /***/ })
 /******/ ]);
