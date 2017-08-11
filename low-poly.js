@@ -70,14 +70,14 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LowPoly__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DOMObject__ = __webpack_require__(3);
 
 
-let origin = document.querySelector('#origin');
-let lowpolify = document.querySelector('#lowpolify');
-let fileInput = document.querySelector('#importFile');
-let lowPoly = new __WEBPACK_IMPORTED_MODULE_0__LowPoly__["a" /* default */](origin, lowpolify);
 
-fileInput.addEventListener("change", lowPoly.importImage.bind(lowPoly));
+let DOMObject = new __WEBPACK_IMPORTED_MODULE_1__DOMObject__["a" /* default */]().initialize();
+let lowPoly = new __WEBPACK_IMPORTED_MODULE_0__LowPoly__["a" /* default */](DOMObject.get('origin'), DOMObject.get('render'));
+
+DOMObject.get('import').addEventListener("change", lowPoly.importImage.bind(lowPoly));
 
 /***/ }),
 /* 1 */
@@ -156,6 +156,32 @@ class CanvasUtil {
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = CanvasUtil;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// let DOMObject = new Map();
+// DOMObject.set('origin', document.querySelector('#origin'));
+// DOMObject.set('render', document.querySelector('#render'));
+// DOMObject.set('import', document.querySelector('#import'));
+
+class DOM extends Map {
+    constructor() {
+        super();
+    }
+
+    initialize() {
+        this.set('origin', document.querySelector('#origin'));
+        this.set('render', document.querySelector('#render'));
+        this.set('import', document.querySelector('#import'));
+
+        return this;
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = DOM;
 
 
 /***/ })

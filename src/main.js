@@ -1,8 +1,7 @@
 import LowPoly from './LowPoly';
+import DOM from './DOMObject';
 
-let origin = document.querySelector('#origin');
-let lowpolify = document.querySelector('#lowpolify');
-let fileInput = document.querySelector('#importFile');
-let lowPoly = new LowPoly(origin, lowpolify);
+let DOMObject = new DOM().initialize();
+let lowPoly = new LowPoly(DOMObject.get('origin'), DOMObject.get('render'));
 
-fileInput.addEventListener("change", lowPoly.importImage.bind(lowPoly));
+DOMObject.get('import').addEventListener("change", lowPoly.importImage.bind(lowPoly));
