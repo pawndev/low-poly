@@ -70,11 +70,11 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LowPoly__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DOMObject__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DOM__ = __webpack_require__(3);
 
 
 
-let DOMObject = new __WEBPACK_IMPORTED_MODULE_1__DOMObject__["a" /* default */]().initialize();
+let DOMObject = new __WEBPACK_IMPORTED_MODULE_1__DOM__["a" /* default */]().initialize();
 let lowPoly = new __WEBPACK_IMPORTED_MODULE_0__LowPoly__["a" /* default */](DOMObject.get('origin'), DOMObject.get('render'));
 
 DOMObject.get('import').addEventListener("change", lowPoly.importImage.bind(lowPoly));
