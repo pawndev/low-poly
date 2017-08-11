@@ -163,11 +163,6 @@ class CanvasUtil {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-// let DOMObject = new Map();
-// DOMObject.set('origin', document.querySelector('#origin'));
-// DOMObject.set('render', document.querySelector('#render'));
-// DOMObject.set('import', document.querySelector('#import'));
-
 class DOM extends Map {
     constructor() {
         super();
